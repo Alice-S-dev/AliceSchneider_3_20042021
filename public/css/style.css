@@ -1,0 +1,262 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.restau__bloc-titre__titre, .footer__logo {
+  font-family: "Shrikhand", cursive;
+}
+
+body {
+  margin: 0;
+}
+
+.marges-page {
+  padding: 0 5% 20px 5%;
+}
+
+.fond-gris {
+  background-color: #F6F6F6;
+}
+
+.center {
+  text-align: center;
+}
+
+.texte {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.texte-descriptif {
+  font-weight: 100;
+  margin: 0;
+}
+
+.petit-titre {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0.8em 0 0.2em 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.header__logo {
+  display: flex;
+  margin: 1em;
+  justify-content: center;
+}
+.header__logo img {
+  width: 200px;
+}
+
+.header-pages {
+  display: flex;
+  padding: 0 5%;
+}
+.header-pages__fleche {
+  margin: 15px 40px 15px 0;
+}
+.header-pages__fleche .fa-arrow-left {
+  line-height: 2;
+}
+
+.btn {
+  border: none;
+  background-image: linear-gradient(#FF79DA, #9356DC);
+  color: white;
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+
+.accueil__h1 {
+  font-weight: bold;
+  margin: 0 1em;
+  padding: 2em 0 1em 0;
+}
+.accueil__h1--reserver {
+  margin: 0 1em 0 1em;
+  padding-top: 1em;
+}
+
+.localisation {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background-color: #EAEAEA;
+  border-top: 1px solid #D2D2D2;
+}
+.localisation__map-marker {
+  margin-right: 1em;
+  margin-left: 2em;
+}
+.localisation__input {
+  border: none;
+  background: transparent;
+}
+
+.fonctionnement-bloc {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  height: 4em;
+  background-color: #F6F6F6;
+  border-radius: 20px;
+  position: relative;
+  padding: 0 20px;
+}
+.fonctionnement-bloc__chiffre {
+  height: 25px;
+  width: 25px;
+  background-color: #9356DC;
+  border-radius: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: -10px;
+}
+.fonctionnement-bloc__icone {
+  width: 1.2em;
+  color: #9356DC;
+  margin: 0 20px;
+}
+.fonctionnement-bloc .texte {
+  height: 1.2rem;
+}
+.fonctionnement-bloc:hover {
+  background-color: #e4d5f6;
+}
+
+.section-restau {
+  margin-bottom: 0;
+  padding-bottom: 3em;
+}
+
+.carte-restau {
+  border-radius: 15px;
+  background-color: white;
+  margin-bottom: 2em;
+  height: 300px;
+}
+.carte-restau__photo {
+  max-width: 100%;
+  height: 75%;
+  position: relative;
+}
+.carte-restau__photo img {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px 15px 0 0;
+  object-fit: cover;
+}
+.carte-restau__photo__nouveau {
+  background-color: #00E2D0;
+  color: #007c72;
+  padding: 0.5em 1em;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.carte-restau__textes {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1em;
+}
+.carte-restau__textes .coeur {
+  font-size: 1.5em;
+  margin: 0.8em 0.3em 0 0;
+}
+
+.restau {
+  position: relative;
+}
+.restau__photo {
+  height: 300px;
+}
+.restau__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.restau__bloc-titre {
+  border-radius: 30px 30px 0 0;
+  background-color: #F6F6F6;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: -20px;
+}
+.restau__bloc-titre__titre {
+  font-size: 1.7em;
+  margin-left: 5%;
+}
+.restau__bloc-titre .coeur {
+  font-size: 1.5em;
+  margin-right: 5%;
+}
+
+.menu {
+  background-color: #F6F6F6;
+  padding-top: 20px;
+}
+.menu__titre {
+  font-size: 1.2em;
+  font-weight: 100;
+  margin: 0;
+  padding: 20px 0 5px 0;
+}
+.menu__ligne {
+  width: 40px;
+  border: 1px #00E2D0 solid;
+}
+.menu__plat {
+  background-color: white;
+  border-radius: 20px;
+  padding: 0 15px 15px 15px;
+  height: 60px;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu__prix {
+  margin: 45px 5px 0 0;
+}
+
+.footer {
+  background-color: black;
+  padding: 2em;
+}
+.footer a {
+  color: white;
+}
+.footer__logo {
+  color: white;
+  margin: 0;
+}
+.footer__nav ul {
+  padding-left: 0;
+  line-height: 1.5;
+}
+.footer .fa-utensils, .footer .fa-hands-helping {
+  width: 30px;
+}
+
+/*# sourceMappingURL=style.css.map */

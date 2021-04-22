@@ -1,0 +1,274 @@
+* {
+	font-family: 'Roboto', sans-serif;
+}
+
+.restau__bloc-titre__titre, .footer__logo {
+	font-family: 'Shrikhand', cursive;
+}
+
+body {
+	margin: 0;
+}
+
+.marges-page {
+	padding: 0 5% 20px 5%;
+}
+
+$color1: #9356DC;
+$color2: #FF79DA;
+$color3: #99E2D0;
+$grey: #F6F6F6;
+$color-ajouts: #00E2D0;
+
+.fond-gris {
+	background-color: $grey;
+}
+
+.center {
+	text-align: center;
+}
+
+.texte {
+	font-size: 1rem;
+	font-weight: 500;
+	margin: 0;
+}
+
+.texte-descriptif {
+	font-weight: 100;
+	margin: 0;
+}
+
+.petit-titre {
+	font-size: 1.1rem;
+	font-weight: bold;
+	margin: 0;
+	padding: 0.8em 0 0.2em 0;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul {
+	list-style-type: none;
+}
+
+
+
+.header__logo {
+	display: flex;
+    margin: 1em;
+    justify-content: center;
+	& img {
+		width: 200px;
+	}
+}
+
+.header-pages {
+	display: flex;
+	padding: 0 5%;
+	&__fleche {
+		margin : 15px  40px 15px 0;
+		& .fa-arrow-left {
+			line-height: 2;
+		}
+	}
+}
+
+.btn {
+	border: none;
+	background-image: linear-gradient($color2, $color1);
+	color: white;
+	width: 200px;
+	height: 50px;
+	border-radius: 30px;
+	margin-top: 1em;
+	margin-bottom: 3em;
+}
+.accueil__h1 {
+	font-weight: bold;
+	margin: 0 1em;
+    padding: 2em 0 1em 0;
+	&--reserver {
+		margin: 0 1em 0 1em;
+    	padding-top: 1em;
+    }
+}
+
+.localisation {
+	display: flex;
+	justify-content: center;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	background-color: #EAEAEA;
+	border-top: 1px solid #D2D2D2;
+	&__map-marker {
+		margin-right: 1em;
+		margin-left: 2em;
+	}
+	&__input {
+		border: none;
+		background: transparent;
+	}
+}
+
+
+.fonctionnement-bloc {
+	display: flex;
+	align-items: center; 
+	margin-bottom: 1em;
+	height: 4em;
+	background-color: $grey;
+	border-radius: 20px;
+	position: relative;
+	padding: 0 20px;
+	&__chiffre {
+		height:25px;
+		width: 25px;
+		background-color: $color1;
+		border-radius: 100%;
+		color: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		left: -10px;	
+	}
+	&__icone {
+		width: 1.2em;
+		color: $color1;
+		margin: 0 20px;
+	}
+	.texte {
+
+		height: 1.2rem;
+	}
+	&:hover {
+		background-color: lighten($color1, 30%);	
+	}
+}
+
+
+.section-restau {
+	margin-bottom: 0;
+	padding-bottom: 3em;
+}
+
+.carte-restau {
+	border-radius: 15px;
+	background-color: white;
+	margin-bottom: 2em;
+	height: 300px;
+	&__photo {
+		max-width: 100%;
+		height: 75%;
+		position: relative;
+		& img {
+			height: 100%;
+			width: 100%;
+			border-radius: 15px 15px 0 0;
+			object-fit: cover;
+		}
+		&__nouveau {
+		background-color: $color-ajouts;
+		color: darken($color-ajouts, 20%);
+   		padding: 0.5em 1em;
+   		display: inline-block;
+    	position: absolute;
+    	right: 10px;
+    	top: 10px;
+		}
+	
+	}
+	&__textes {
+		display: flex;
+    	justify-content: space-between;
+    	margin: 0 1em;
+    	.coeur {
+    		font-size: 1.5em;
+    		margin: 0.8em 0.3em 0 0;
+    	}
+	}
+}
+
+.restau {
+	position: relative;
+	&__photo {
+		height: 300px;
+		& img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__bloc-titre {
+		border-radius: 30px 30px 0 0;
+    	background-color: #F6F6F6;
+    	width: 100%;
+    	display: flex;
+    	justify-content: space-between;
+    	align-items: center;
+   		position: absolute;
+   		bottom: -20px;
+		&__titre {
+			font-size: 1.7em;
+			margin-left: 5%;
+		}
+		& .coeur {
+			font-size: 1.5em;
+			margin-right: 5%;
+		}
+	}
+}
+
+.menu {
+	background-color: $grey;
+	padding-top: 20px;
+	&__titre {
+		font-size: 1.2em;
+		font-weight: 100;
+		margin: 0;
+		padding: 20px 0 5px 0;
+	}
+	&__ligne {
+		width: 40px;
+   		border: 1px $color-ajouts solid;
+	}
+	&__plat {
+		background-color: white;
+    	border-radius: 20px;
+    	padding: 0 15px 15px 15px;
+    	height: 60px;
+    	margin: 15px 0;
+    	display: flex;
+    	justify-content: space-between;
+    	align-items: center;
+    }
+    &__prix {
+    	margin: 45px 5px 0 0;	
+	}
+}
+
+
+
+.footer {
+	background-color: black;
+	padding: 2em;
+	& a {
+		color: white;
+	}
+	&__logo {
+	color: white;
+	margin: 0;
+	}
+	&__nav ul {
+		padding-left: 0;
+		line-height: 1.5;
+	}
+	.fa-utensils, .fa-hands-helping {
+    width: 30px;
+	}
+}
+
