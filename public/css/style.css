@@ -51,8 +51,8 @@ ul {
 
 .header__logo {
   display: flex;
-  margin: 1em;
   justify-content: center;
+  margin: 1em;
 }
 .header__logo img {
   width: 200px;
@@ -60,13 +60,12 @@ ul {
 
 .header-pages {
   display: flex;
+  align-items: center;
   padding: 0 5%;
+  font-size: 1.2em;
 }
 .header-pages__fleche {
   margin: 15px 40px 15px 0;
-}
-.header-pages__fleche .fa-arrow-left {
-  line-height: 2;
 }
 
 .btn {
@@ -78,6 +77,11 @@ ul {
   border-radius: 30px;
   margin-top: 1em;
   margin-bottom: 3em;
+  box-shadow: 5px 5px 10px #EAEAEA;
+}
+.btn:hover {
+  box-shadow: 5px 5px 10px #D2D2D2;
+  background-image: linear-gradient(#fface8, #ae80e5);
 }
 
 .accueil__h1 {
@@ -116,6 +120,7 @@ ul {
   border-radius: 20px;
   position: relative;
   padding: 0 20px;
+  box-shadow: 5px 5px 10px #EAEAEA;
 }
 .fonctionnement-bloc__chiffre {
   height: 25px;
@@ -151,6 +156,7 @@ ul {
   background-color: white;
   margin-bottom: 2em;
   height: 300px;
+  box-shadow: 5px 5px 10px #EAEAEA;
 }
 .carte-restau__photo {
   max-width: 100%;
@@ -235,6 +241,7 @@ ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 5px 5px 10px #EAEAEA;
 }
 .menu__prix {
   margin: 45px 5px 0 0;
@@ -257,6 +264,92 @@ ul {
 }
 .footer .fa-utensils, .footer .fa-hands-helping {
   width: 30px;
+}
+
+/* MEDIA QUERIES */
+@media screen and (min-width: 1024px) {
+  /* 1024px = ipad pro - Les plus petites tablettes gardent l'affichage mobile */
+  .header-pages {
+    font-size: 2.5em;
+    justify-content: center;
+    position: relative;
+  }
+  .header-pages__fleche {
+    position: absolute;
+    left: 5%;
+    bottom: 20px;
+  }
+
+  .header__logo img {
+    width: 250px;
+  }
+
+  .btn {
+    margin-top: 3em;
+  }
+
+  .fonctionnement {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .section-restau__restaurants {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .carte-restau {
+    width: 400px;
+    margin: 20px;
+  }
+
+  .footer__logo {
+    font-size: 2em;
+  }
+}
+@media screen and (min-width: 1400px) {
+  /* Pour que le design reste propre */
+  .section-fonctionnement {
+    display: flex;
+    align-items: baseline;
+  }
+
+  .fonctionnement {
+    width: 80%;
+    margin-left: 20px;
+    justify-content: inherit;
+  }
+
+  .fonctionnement-bloc {
+    margin-left: 50px;
+  }
+
+  .carte-menu {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 50px;
+    padding-bottom: 30px;
+  }
+
+  .menu {
+    width: 30%;
+  }
+  .menu__ligne {
+    margin-bottom: 50px;
+  }
+
+  .restau__bloc-titre {
+    bottom: -70px;
+  }
+  .restau__bloc-titre__titre {
+    font-size: 2em;
+    padding-bottom: 30px;
+    margin-top: 10px;
+  }
+  .restau__bloc-titre .coeur {
+    font-size: 2em;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
