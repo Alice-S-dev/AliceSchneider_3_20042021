@@ -115,7 +115,7 @@ ul {
     }
 }
 
-@keyframes spinner {
+@keyframes spinner { /* @keyframes pour rotation loading-spinner */
   from { 
     transform: rotate(0deg); 
   }
@@ -124,12 +124,14 @@ ul {
   }
 }
 
-@keyframes transparence {
+@keyframes transparence {	/* @keyframes pour transparence du fond du loading-spinner */
 	from {
 		opacity: 1;
+		z-index: 2;
 	}
 	to {
 		opacity: 0;
+		z-index: -1;
 	}
 }
 
@@ -353,14 +355,14 @@ ul {
 		margin: 0;
 		padding: 20px 0 5px 0;
 	}
-	&__ligne {
+	&__ligne {	/* demi-ligne sous PLATS, ENTREES, DESSERTS */
 		width: 40px;
    		border: 1px $color-ajouts solid;
 	}
-	&__plat {
+	&__repas {
 		background-color: white;
     	border-radius: 20px;
-    	padding: 0 15px 15px 15px;
+    	padding: 15px;
     	height: 60px;
     	margin: 15px 0;
     	display: flex;
@@ -368,13 +370,81 @@ ul {
     	align-items: center;
     	@include shadow;
 		cursor: pointer;
+		position: relative;
+		& .plat {
+            width: 100%;
+            text-overflow: ellipsis;
+            &__accompagnement {
+                display: flex;
+                justify-content: space-between;
+                & > .prix {
+                    font-weight: bold;
+                }     
+            }
+        }
+        & .checkbox {	/* boite verte de validation */
+            width: 20%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 20px 20px 0;
+            background-color: $color-ajouts;
+            position: absolute;
+            right: 0;
+            top: 0;
+            & .fa-check {	/* coche dans la boite verte */
+                color: $color-ajouts;
+                background-color: white;
+                border-radius: 50%;
+                width: 15px;
+                height:15px;
+                padding: 5%;
+            }
+        }
     }
-    &__prix {
-    	margin: 45px 5px 0 0;	
-	}
 }
 
+.ellipse {	/* mise en place d'ellipsis sur les textes des plats*/
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+                
+.menu__repas:hover .checkbox {	/*transition : apparition checkbox au survol de la boîte*/
+    transform-origin: 100% 0;
+    transform: scaleX(1);
+    -webkit-transition: transform 0.5s linear;
+    -moz-transition: transform 0.5s linear;
+    transition: transform 0.5s linear;
+}
 
+.menu__repas:not(:hover) .checkbox {	/*transition : disparition checkbox quand on ne survole plus la boîte*/
+    transform-origin: 100% 0;
+    transform: scaleX(0);
+    -webkit-transition: transform 0.5s linear;
+    -moz-transition: transform 0.5s linear;
+    transition: transform 0.5s linear;
+}
+.menu__repas:hover .fa-check { /*transition : rotation de la coche */
+    transition: transform 0.5s linear;
+    transform: rotate(360deg);
+    cursor: pointer;
+}
+
+.menu__repas:hover .plat {	/*transition : décalage des plats au survol de la boîte*/
+    width: 80%;
+    -webkit-transition: width 0.5s linear;
+    -moz-transition: width 0.5s linear;
+    transition: width 0.5s linear;
+}
+
+.menu__repas:not(hover) .plat {	/*transition : retour des plats à leur place initiale quand on ne survole plus la boîte*/
+    width: 100%;
+    -webkit-transition: width 0.5s linear;
+    -moz-transition: width 0.5s linear;
+    transition: width 0.5s linear;
+}
 
 .footer {
 	background-color: black;
