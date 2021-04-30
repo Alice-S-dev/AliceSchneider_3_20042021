@@ -85,17 +85,20 @@ ul {
 
 .btn {
 	border: none;
-	background-image: linear-gradient($color2, $color1);
+	background: linear-gradient($color2, $color1);
 	color: white;
 	width: 200px;
 	height: 50px;
 	border-radius: 30px;
 	margin-top: 1em;
 	margin-bottom: 3em;
+	cursor: pointer;
 	@include shadow;
+	opacity: 1;
+	transition: all 1s;
 	&:hover {
 		@include shadow($grey-dark);
-		background-image: linear-gradient(lighten($color2, 10%), lighten($color1, 10%));
+		opacity: 0.6;
 	}
 }
 .accueil__h1 {
@@ -122,6 +125,7 @@ ul {
 	&__input {
 		border: none;
 		background: transparent;
+		cursor: pointer;
 	}
 }
 
@@ -132,6 +136,7 @@ ul {
 	margin-bottom: 1em;
 	height: 4em;
 	background-color: $grey-light;
+	transition: background-color 1s;
 	border-radius: 20px;
 	position: relative;
 	padding: 0 20px;
@@ -158,10 +163,42 @@ ul {
 		height: 1.2rem;
 	}
 	&:hover {
-		background-color: lighten($color1, 30%);	
+		background-color: lighten($color1, 30%);		
 	}
 }
 
+.coeur {
+	position: relative;
+	z-index: 1;
+	cursor: pointer;
+	& .coeur1 {
+		z-index: 3;
+		width: 25px;
+		position: relative;
+		bottom: 1px;
+		transition: opacity 1500ms;
+	}
+	& .coeur2 {
+		z-index: 2;
+		width: 25px;
+		position: absolute;
+		right: 0;
+		opacity: 0;
+		background-image: white;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		transition: all 1500ms;
+	}
+	&:hover {
+		& > .coeur1 {
+			opacity: 0;
+		}
+		& > .coeur2 {
+			opacity: 1;
+			background-image: linear-gradient($color2, $color1);
+		}
+	}
+}
 
 .section-restau {
 	margin-bottom: 0;
@@ -232,7 +269,9 @@ ul {
 		& .coeur {
 			font-size: 1.5em;
 			margin-right: 5%;
+			
 		}
+		
 	}
 }
 
@@ -259,6 +298,7 @@ ul {
     	justify-content: space-between;
     	align-items: center;
     	@include shadow;
+		cursor: pointer;
     }
     &__prix {
     	margin: 45px 5px 0 0;	

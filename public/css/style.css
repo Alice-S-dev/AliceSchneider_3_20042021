@@ -70,18 +70,21 @@ ul {
 
 .btn {
   border: none;
-  background-image: linear-gradient(#FF79DA, #9356DC);
+  background: linear-gradient(#FF79DA, #9356DC);
   color: white;
   width: 200px;
   height: 50px;
   border-radius: 30px;
   margin-top: 1em;
   margin-bottom: 3em;
+  cursor: pointer;
   box-shadow: 5px 5px 10px #EAEAEA;
+  opacity: 1;
+  transition: all 1s;
 }
 .btn:hover {
   box-shadow: 5px 5px 10px #D2D2D2;
-  background-image: linear-gradient(#fface8, #ae80e5);
+  opacity: 0.6;
 }
 
 .accueil__h1 {
@@ -109,6 +112,7 @@ ul {
 .localisation__input {
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .fonctionnement-bloc {
@@ -117,6 +121,7 @@ ul {
   margin-bottom: 1em;
   height: 4em;
   background-color: #F6F6F6;
+  transition: background-color 1s;
   border-radius: 20px;
   position: relative;
   padding: 0 20px;
@@ -144,6 +149,37 @@ ul {
 }
 .fonctionnement-bloc:hover {
   background-color: #e4d5f6;
+}
+
+.coeur {
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.coeur .coeur1 {
+  z-index: 3;
+  width: 25px;
+  position: relative;
+  bottom: 1px;
+  transition: opacity 1500ms;
+}
+.coeur .coeur2 {
+  z-index: 2;
+  width: 25px;
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  background-image: white;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 1500ms;
+}
+.coeur:hover > .coeur1 {
+  opacity: 0;
+}
+.coeur:hover > .coeur2 {
+  opacity: 1;
+  background-image: linear-gradient(#FF79DA, #9356DC);
 }
 
 .section-restau {
@@ -242,6 +278,7 @@ ul {
   justify-content: space-between;
   align-items: center;
   box-shadow: 5px 5px 10px #EAEAEA;
+  cursor: pointer;
 }
 .menu__prix {
   margin: 45px 5px 0 0;
