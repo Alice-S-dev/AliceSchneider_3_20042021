@@ -1,3 +1,19 @@
+@charset "UTF-8";
+/* ----------SOMMAIRE---------- */
+/*
+	L 14 ---- VARIABLES
+	L 25 ---- MIXINS
+	L 38 ---- ELEMENTS GENERAUX (polices, marges des pages, taille des fonts...)
+	L 78 ---- KEYFRAMES
+	L 120 --- POUR TOUTES LES PAGES (dont header, footer et coeur)
+	L 211 --- POUR LA PAGE D'ACCUEIL (dont loading spinner)
+	L 382 --- POUR LES PAGES DES RESTAURANTS (dont coche verte)
+	L 546 --- MEDIA QUERIES (tablette > 1024px - Desktop > 1400px)
+*/
+/* VARIABLES */
+/* Pour tous les éléments annexes (bloc nouveau, coche verte...)*/
+/* MIXINS */
+/* ELEMENTS GENERAUX */
 * {
   font-family: "Roboto", sans-serif;
 }
@@ -8,6 +24,15 @@
 
 body {
   margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ul {
+  list-style-type: none;
 }
 
 .marges-page {
@@ -40,16 +65,48 @@ body {
   padding: 0.8em 0 0.2em 0;
 }
 
-a {
-  text-decoration: none;
-  color: black;
+/* KEYFRAMES */
+@keyframes spinner {
+  /* @keyframes pour rotation loading-spinner */
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
-
-ul {
-  list-style-type: none;
+@keyframes transparence {
+  /* @keyframes pour transparence du fond du loading-spinner */
+  from {
+    opacity: 1;
+    z-index: 2;
+  }
+  to {
+    opacity: 0;
+    z-index: -1;
+  }
 }
-
+@keyframes apparition {
+  from {
+    opacity: 0;
+    -webkit-transform: translateY(10%);
+    -moz-transform: translateY(10%);
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+    -moz-transform: translateY(0%);
+    transform: translateY(0%);
+  }
+}
+/* POUR TOUTES LES PAGES */
 .header__logo {
+  /* Mise en place du logo  */
   display: flex;
   justify-content: center;
   margin: 1em;
@@ -58,17 +115,8 @@ ul {
   width: 200px;
 }
 
-.header-pages {
-  display: flex;
-  align-items: center;
-  padding: 0 5%;
-  font-size: 1.2em;
-}
-.header-pages__fleche {
-  margin: 15px 40px 15px 0;
-}
-
 .btn {
+  /* Bouton rose et violet pour commander */
   border: none;
   background: linear-gradient(#FF79DA, #9356DC);
   color: white;
@@ -78,13 +126,144 @@ ul {
   margin-top: 1em;
   margin-bottom: 3em;
   cursor: pointer;
+  /* ombres des boites */
   box-shadow: 5px 5px 10px #EAEAEA;
   opacity: 1;
   transition: all 1s;
 }
 .btn:hover {
+  /* ombres des boites */
   box-shadow: 5px 5px 10px #D2D2D2;
   opacity: 0.6;
+}
+
+.coeur {
+  /* Superposition de 2 coeurs (1 vide et 1 plein) pour réaliser l'animation de remplissage du coeur au survol */
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.coeur .coeur1 {
+  z-index: 3;
+  width: 35px;
+  position: relative;
+  bottom: 1px;
+  -webkit-transition: opacity 1500ms;
+  -moz-transition: opacity 1500ms;
+  transition: opacity 1500ms;
+}
+.coeur .coeur2 {
+  z-index: 2;
+  width: 35px;
+  position: absolute;
+  right: 0;
+  opacity: 0;
+  background-image: white;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  text-fill-color: transparent;
+  -webkit-transition: all 1500ms;
+  -moz-transition: all 1500ms;
+  transition: all 1500ms;
+}
+.coeur:hover > .coeur1 {
+  opacity: 0;
+}
+.coeur:hover > .coeur2 {
+  opacity: 1;
+  background-image: linear-gradient(#FF79DA, #9356DC);
+}
+
+.footer {
+  background-color: black;
+  padding: 2em;
+}
+.footer a {
+  color: white;
+}
+.footer__logo {
+  color: white;
+  margin: 0;
+}
+.footer__nav ul {
+  padding-left: 0;
+  line-height: 1.5;
+}
+.footer .fa-utensils, .footer .fa-hands-helping {
+  width: 30px;
+}
+
+/* POUR LA PAGE D'ACCUEIL */
+.page-entiere {
+  /* Permet le positionnement du loading-spinner */
+  position: relative;
+  z-index: 1;
+}
+
+/* Loading spinner : apparaît au chargement de la page, disparait au bout de 3 secondes */
+.loading-spinner {
+  /* Fond semi-opaque */
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: justify;
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.9);
+  animation: transparence 500ms 3s forwards;
+  -webkit-animation: transparence 500ms 3s forwards;
+  -moz-animation: transparence 500ms 3s forwards;
+}
+.loading-spinner__object {
+  /* Grand élément */
+  width: 50px;
+  height: 50px;
+  border-top: 3px solid #9356DC;
+  border-radius: 50px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -25px 0 0 -25px;
+  -webkit-animation: spinner 1s linear infinite;
+  -moz-animation: spinner 1s linear infinite;
+  animation: spinner 1s linear infinite;
+}
+.loading-spinner__object::before {
+  /* Moyen élément */
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-right: 3px solid #FF79DA;
+  border-radius: 30px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -20px 0 0 -20px;
+  -webkit-animation: spinner 2s linear 500ms infinite;
+  -moz-animation: spinner 2s linear 500ms infinite;
+  animation: spinner 2s linear 500ms infinite;
+}
+.loading-spinner__object::after {
+  /* Petit élément */
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-bottom: 3px solid #99E2D0;
+  border-radius: 10px;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -15px 0 0 -15px;
+  -webkit-animation: spinner 1s linear 1s infinite;
+  -moz-animation: spinner 1s linear 1s infinite;
+  animation: spinner 1s linear 1s infinite;
 }
 
 .accueil__h1 {
@@ -98,6 +277,7 @@ ul {
 }
 
 .localisation {
+  /* barre de recherche de lieu, contenu modifiable */
   display: flex;
   justify-content: center;
   padding-top: 0.5em;
@@ -116,6 +296,7 @@ ul {
 }
 
 .fonctionnement-bloc {
+  /* Les 3 étapes pour utiliser le service */
   display: flex;
   align-items: center;
   margin-bottom: 1em;
@@ -125,6 +306,7 @@ ul {
   border-radius: 20px;
   position: relative;
   padding: 0 20px;
+  /* ombres des boites */
   box-shadow: 5px 5px 10px #EAEAEA;
 }
 .fonctionnement-bloc__chiffre {
@@ -151,47 +333,19 @@ ul {
   background-color: #e4d5f6;
 }
 
-.coeur {
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-}
-.coeur .coeur1 {
-  z-index: 3;
-  width: 25px;
-  position: relative;
-  bottom: 1px;
-  transition: opacity 1500ms;
-}
-.coeur .coeur2 {
-  z-index: 2;
-  width: 25px;
-  position: absolute;
-  right: 0;
-  opacity: 0;
-  background-image: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: all 1500ms;
-}
-.coeur:hover > .coeur1 {
-  opacity: 0;
-}
-.coeur:hover > .coeur2 {
-  opacity: 1;
-  background-image: linear-gradient(#FF79DA, #9356DC);
-}
-
 .section-restau {
+  /* Toutes les cartes restaurants sur la page d'accueil */
   margin-bottom: 0;
   padding-bottom: 3em;
 }
 
 .carte-restau {
+  /* Restaurants présentés en page d'accueil, sous la forme de cartes cliquables */
   border-radius: 15px;
   background-color: white;
   margin-bottom: 2em;
   height: 300px;
+  /* ombres des boites */
   box-shadow: 5px 5px 10px #EAEAEA;
 }
 .carte-restau__photo {
@@ -224,7 +378,21 @@ ul {
   margin: 0.8em 0.3em 0 0;
 }
 
+/* POUR LES PAGES DES RESTAURANTS */
+.header-pages {
+  /* Modifications du header pour les pages restaurants */
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  font-size: 1.2em;
+}
+.header-pages__fleche {
+  /* Flèche pour retour à la page d'accueil */
+  margin: 15px 40px 15px 0;
+}
+
 .restau {
+  /* Haut de page pour les pages restaurants */
   position: relative;
 }
 .restau__photo {
@@ -255,6 +423,7 @@ ul {
 }
 
 .menu {
+  /* Section menu regroupant l'ensemble des blocs des différents plats */
   background-color: #F6F6F6;
   padding-top: 20px;
 }
@@ -265,42 +434,173 @@ ul {
   padding: 20px 0 5px 0;
 }
 .menu__ligne {
+  /* demi-ligne déco sous PLATS, ENTREES, DESSERTS */
   width: 40px;
   border: 1px #00E2D0 solid;
 }
-.menu__plat {
+.menu__repas {
+  /* Blocs pour les différents plats */
   background-color: white;
   border-radius: 20px;
-  padding: 0 15px 15px 15px;
+  padding: 15px;
   height: 60px;
   margin: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* ombres des boites */
   box-shadow: 5px 5px 10px #EAEAEA;
   cursor: pointer;
+  position: relative;
 }
-.menu__prix {
-  margin: 45px 5px 0 0;
+.menu__repas .plat {
+  width: 100%;
+}
+.menu__repas .plat__accompagnement {
+  display: flex;
+  justify-content: space-between;
+}
+.menu__repas .plat__accompagnement > .prix {
+  font-weight: bold;
+}
+.menu__repas .checkbox {
+  /* boite verte de validation */
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 20px 20px 0;
+  background-color: #00E2D0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.menu__repas .checkbox .fa-check {
+  /* coche dans la boite verte */
+  color: #00E2D0;
+  background-color: white;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  padding: 5%;
 }
 
-.footer {
-  background-color: black;
-  padding: 2em;
+.ellipse {
+  /* mise en place d'ellipsis sur les textes des plats*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-.footer a {
-  color: white;
+
+.menu__repas:hover .checkbox {
+  /*transition : apparition checkbox au survol de la boîte*/
+  transform-origin: 100% 0;
+  transform: scaleX(1);
+  -webkit-transition: transform 0.5s linear;
+  -moz-transition: transform 0.5s linear;
+  transition: transform 0.5s linear;
 }
-.footer__logo {
-  color: white;
-  margin: 0;
+
+.menu__repas:not(:hover) .checkbox {
+  /*transition : disparition checkbox quand on ne survole plus la boîte*/
+  -webkit-transform-origin: 100% 0;
+  -moz-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transition: transform 0.5s linear;
+  -moz-transition: transform 0.5s linear;
+  transition: transform 0.5s linear;
 }
-.footer__nav ul {
-  padding-left: 0;
-  line-height: 1.5;
+
+.menu__repas:hover .fa-check {
+  /*transition : rotation de la coche */
+  -webkit-transition: transform 0.5s linear;
+  -moz-transition: transform 0.5s linear;
+  transition: transform 0.5s linear;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  transform: rotate(360deg);
+  cursor: pointer;
 }
-.footer .fa-utensils, .footer .fa-hands-helping {
-  width: 30px;
+
+.menu__repas:hover .plat {
+  /*transition : décalage des plats au survol de la boîte*/
+  width: 80%;
+  -webkit-transition: width 0.5s linear;
+  -moz-transition: width 0.5s linear;
+  transition: width 0.5s linear;
+}
+
+.menu__repas:not(hover) .plat {
+  /*transition : retour des plats à leur place initiale quand on ne survole plus la boîte*/
+  width: 100%;
+  -webkit-transition: width 0.5s linear;
+  -moz-transition: width 0.5s linear;
+  transition: width 0.5s linear;
+}
+
+.plat1, .plat2, .plat3, .plat4, .plat5, .plat6, .plat7, .plat8, .plat9, .plat10 {
+  /* Animation pour apparition progressive des différents plats */
+  animation: apparition 1s linear backwards;
+  -webkit-animation: apparition 1s linear backwards;
+  -moz-animation: apparition 1s linear backwards;
+}
+
+.plat2 {
+  -webkit-animation-delay: 0.2s;
+  -moz-animation-delay: 0.2s;
+  animation-delay: 0.2s;
+}
+
+.plat3 {
+  -webkit-animation-delay: 0.4s;
+  -moz-animation-delay: 0.4s;
+  animation-delay: 0.4s;
+}
+
+.plat4 {
+  -webkit-animation-delay: 0.6s;
+  -moz-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.plat5 {
+  -webkit-animation-delay: 0.8s;
+  -moz-animation-delay: 0.8s;
+  animation-delay: 0.8s;
+}
+
+.plat6 {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+.plat7 {
+  -webkit-animation-delay: 1.2s;
+  -moz-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+
+.plat8 {
+  -webkit-animation-delay: 1.4s;
+  -moz-animation-delay: 1.4s;
+  animation-delay: 1.4s;
+}
+
+.plat9 {
+  -webkit-animation-delay: 1.6s;
+  -moz-animation-delay: 1.6s;
+  animation-delay: 1.6s;
+}
+
+.plat10 {
+  -webkit-animation-delay: 1.8s;
+  -moz-animation-delay: 1.8s;
+  animation-delay: 1.8s;
 }
 
 /* MEDIA QUERIES */
@@ -346,7 +646,7 @@ ul {
   }
 }
 @media screen and (min-width: 1400px) {
-  /* Pour que le design reste propre */
+  /* Desktop - breakpoint choisi pour conserver un design propre */
   .section-fonctionnement {
     display: flex;
     align-items: baseline;
