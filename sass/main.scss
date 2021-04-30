@@ -1,18 +1,17 @@
-* {
-	font-family: 'Roboto', sans-serif;
-}
+/* ----------SOMMAIRE---------- */
+/*
+	L 14 ---- VARIABLES
+	L 25 ---- MIXINS
+	L 38 ---- ELEMENTS GENERAUX (polices, marges des pages, taille des fonts...)
+	L 78 ---- KEYFRAMES
+	L 120 --- POUR TOUTES LES PAGES (dont header, footer et coeur)
+	L 211 --- POUR LA PAGE D'ACCUEIL (dont loading spinner)
+	L 382 --- POUR LES PAGES DES RESTAURANTS (dont coche verte)
+	L 546 --- MEDIA QUERIES (tablette > 1024px - Desktop > 1400px)
+*/
 
-.restau__bloc-titre__titre, .footer__logo {
-	font-family: 'Shrikhand', cursive;
-}
 
-body {
-	margin: 0;
-}
-
-.marges-page {
-	padding: 0 5% 20px 5%;
-}
+/* VARIABLES */
 
 $color1: #9356DC;
 $color2: #FF79DA;
@@ -20,23 +19,42 @@ $color3: #99E2D0;
 $grey-light: #F6F6F6;
 $grey-middle: #EAEAEA;
 $grey-dark: #D2D2D2;
-$color-ajouts: #00E2D0;
+$color-ajouts: #00E2D0; /* Pour tous les éléments annexes (bloc nouveau, coche verte...)*/
 
-@mixin shadow ($colour: $grey-middle) {
+
+/* MIXINS */
+
+@mixin shadow ($colour: $grey-middle) { /* ombres des boites */
 	box-shadow: 5px 5px 10px ($colour);
 }
 
-@mixin apparition-plats {
+@mixin apparition-plats { /* Animation pour apparition progressive des différents plats */
 	animation: apparition 1s linear backwards;
+	-webkit-animation: apparition 1s linear backwards;
+	-moz-animation: apparition 1s linear backwards;
 }
 
-.fond-gris {
-	background-color: $grey-light;
+
+/* ELEMENTS GENERAUX */
+
+* {font-family: 'Roboto', sans-serif;}
+
+.restau__bloc-titre__titre, .footer__logo {font-family: 'Shrikhand', cursive;}
+
+body {margin: 0;}
+
+a {
+	text-decoration: none;
+	color: black;
 }
 
-.center {
-	text-align: center;
-}
+ul {list-style-type: none;}
+
+.marges-page {padding: 0 5% 20px 5%;}
+
+.fond-gris {background-color: $grey-light;}
+
+.center {text-align: center;}
 
 .texte {
 	font-size: 1rem;
@@ -56,73 +74,18 @@ $color-ajouts: #00E2D0;
 	padding: 0.8em 0 0.2em 0;
 }
 
-a {
-	text-decoration: none;
-	color: black;
-}
 
-ul {
-	list-style-type: none;
-}
-
-
-.page-entiere {
-	position: relative;
-	z-index: 1;
-}
-
-.loading-spinner {
-	width: 100%;
-	height: 100%;
-    position: fixed;
-    top: 0; left: 0;
-    text-align: justify;
-    z-index: 2;
-    background-color: rgba(255,255,255,0.9);
-    animation: transparence 500ms 3s forwards;
-    &__object {
-        width: 50px;
-        height: 50px;
-        border-top: 3px solid #9356DC;
-        border-radius: 50px;
-        z-index: 2;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -25px 0 0 -25px;
-   	    animation: spinner 1s linear infinite;
-        &::before {
-	        content: "";
-            width: 30px;
-            height: 30px;
-            border-right: 3px solid #FF79DA;
-            border-radius: 30px;
-            z-index: 2;
-            position: absolute;
-            top: 50%; left: 50%;
-            margin: -20px 0 0 -20px;
-   	        animation: spinner 2s linear 500ms infinite;
-        }
-        &::after {
-	        content: "";
-            width: 15px;
-            height: 15px;
-            border-bottom: 3px solid #99E2D0;
-            border-radius: 10px;
-            z-index: 2;
-            position: absolute;
-            top: 50%; left: 50%;
-            margin: -15px 0 0 -15px;
-            animation: spinner 1s linear 1s infinite;
-        }
-    }
-}
+/* KEYFRAMES */ 
 
 @keyframes spinner { /* @keyframes pour rotation loading-spinner */
   from { 
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
     transform: rotate(0deg); 
   }
   to { 
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
     transform: rotate(360deg); 
   }
 }
@@ -138,7 +101,25 @@ ul {
 	}
 }
 
-.header__logo {
+@keyframes apparition {
+	from {
+		opacity: 0;
+		-webkit-transform: translateY(10%);
+		-moz-transform: translateY(10%);
+		transform: translateY(10%);
+	}
+	to {
+		opacity: 1;
+		-webkit-transform: translateY(0%);
+		-moz-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+}
+
+
+/* POUR TOUTES LES PAGES */
+
+.header__logo {   /* Mise en place du logo  */
 	display: flex;
 	justify-content: center;
     margin: 1em;
@@ -147,17 +128,7 @@ ul {
 	}
 }
 
-.header-pages {
-	display: flex;
-	align-items: center;
-	padding: 0 5%;
-	font-size: 1.2em;
-	&__fleche {
-		margin : 15px  40px 15px 0;
-	}
-}
-
-.btn {
+.btn {  /* Bouton rose et violet pour commander */
 	border: none;
 	background: linear-gradient($color2, $color1);
 	color: white;
@@ -175,6 +146,131 @@ ul {
 		opacity: 0.6;
 	}
 }
+
+.coeur { 		/* Superposition de 2 coeurs (1 vide et 1 plein) pour réaliser l'animation de remplissage du coeur au survol */
+	position: relative;
+	z-index: 1;
+	cursor: pointer;
+	& .coeur1 {
+		z-index: 3;
+		width: 35px;
+		position: relative;
+		bottom: 1px;
+		-webkit-transition: opacity 1500ms;
+		-moz-transition: opacity 1500ms;
+		transition: opacity 1500ms;
+	}
+	& .coeur2 {
+		z-index: 2;
+		width: 35px;
+		position: absolute;
+		right: 0;
+		opacity: 0;
+		background-image: white;
+		-webkit-background-clip: text;
+		-moz-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		-moz-text-fill-color: transparent;
+		text-fill-color: transparent;
+		-webkit-transition: all 1500ms;
+		-moz-transition: all 1500ms;
+		transition: all 1500ms;
+	}
+	&:hover {
+		& > .coeur1 {
+			opacity: 0;
+		}
+		& > .coeur2 {
+			opacity: 1;
+			background-image: linear-gradient($color2, $color1);
+		}
+	}
+}
+
+.footer {
+	background-color: black;
+	padding: 2em;
+	& a {
+		color: white;
+	}
+	&__logo {
+	color: white;
+	margin: 0;
+	}
+	&__nav ul {
+		padding-left: 0;
+		line-height: 1.5;
+	}
+	.fa-utensils, .fa-hands-helping {
+    width: 30px;
+	}
+}
+
+
+/* POUR LA PAGE D'ACCUEIL */
+
+.page-entiere {		/* Permet le positionnement du loading-spinner */
+	position: relative;
+	z-index: 1;
+}
+
+/* Loading spinner : apparaît au chargement de la page, disparait au bout de 3 secondes */
+.loading-spinner {  	/* Fond semi-opaque */
+	width: 100%;
+	height: 100%;
+    position: fixed;
+    top: 0; left: 0;
+    text-align: justify;
+    z-index: 2;
+    background-color: rgba(255,255,255,0.9);
+    animation: transparence 500ms 3s forwards;
+    -webkit-animation: transparence 500ms 3s forwards;
+    -moz-animation: transparence 500ms 3s forwards;
+    &__object {		/* Grand élément */
+        width: 50px;
+        height: 50px;
+        border-top: 3px solid #9356DC;
+        border-radius: 50px;
+        z-index: 2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -25px 0 0 -25px;
+   	    -webkit-animation: spinner 1s linear infinite;
+   	    -moz-animation: spinner 1s linear infinite;
+   	    animation: spinner 1s linear infinite;
+        &::before {		/* Moyen élément */
+	        content: "";
+            width: 30px;
+            height: 30px;
+            border-right: 3px solid #FF79DA;
+            border-radius: 30px;
+            z-index: 2;
+            position: absolute;
+            top: 50%; left: 50%;
+            margin: -20px 0 0 -20px;
+   	        -webkit-animation: spinner 2s linear 500ms infinite;
+   	        -moz-animation: spinner 2s linear 500ms infinite;
+   	        animation: spinner 2s linear 500ms infinite;
+        }
+        &::after {		/* Petit élément */
+	        content: "";
+            width: 15px;
+            height: 15px;
+            border-bottom: 3px solid #99E2D0;
+            border-radius: 10px;
+            z-index: 2;
+            position: absolute;
+            top: 50%; left: 50%;
+            margin: -15px 0 0 -15px;
+            -webkit-animation: spinner 1s linear 1s infinite;
+            -moz-animation: spinner 1s linear 1s infinite;
+            animation: spinner 1s linear 1s infinite;
+        }
+    }
+}
+
 .accueil__h1 {
 	font-weight: bold;
 	margin: 0 1em;
@@ -185,7 +281,7 @@ ul {
     }
 }
 
-.localisation {
+.localisation { 		/* barre de recherche de lieu, contenu modifiable */ 
 	display: flex;
 	justify-content: center;
 	padding-top: 0.5em;
@@ -203,8 +299,7 @@ ul {
 	}
 }
 
-
-.fonctionnement-bloc {
+.fonctionnement-bloc {		/* Les 3 étapes pour utiliser le service */
 	display: flex;
 	align-items: center; 
 	margin-bottom: 1em;
@@ -241,45 +336,12 @@ ul {
 	}
 }
 
-.coeur {
-	position: relative;
-	z-index: 1;
-	cursor: pointer;
-	& .coeur1 {
-		z-index: 3;
-		width: 35px;
-		position: relative;
-		bottom: 1px;
-		transition: opacity 1500ms;
-	}
-	& .coeur2 {
-		z-index: 2;
-		width: 35px;
-		position: absolute;
-		right: 0;
-		opacity: 0;
-		background-image: white;
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		transition: all 1500ms;
-	}
-	&:hover {
-		& > .coeur1 {
-			opacity: 0;
-		}
-		& > .coeur2 {
-			opacity: 1;
-			background-image: linear-gradient($color2, $color1);
-		}
-	}
-}
-
-.section-restau {
+.section-restau {  /* Toutes les cartes restaurants sur la page d'accueil */
 	margin-bottom: 0;
 	padding-bottom: 3em;
 }
 
-.carte-restau {
+.carte-restau { 		/* Restaurants présentés en page d'accueil, sous la forme de cartes cliquables */
 	border-radius: 15px;
 	background-color: white;
 	margin-bottom: 2em;
@@ -317,7 +379,19 @@ ul {
 	}
 }
 
-.restau {
+/* POUR LES PAGES DES RESTAURANTS */
+
+.header-pages { /* Modifications du header pour les pages restaurants */
+	display: flex;
+	align-items: center;
+	padding: 0 5%;
+	font-size: 1.2em;
+	&__fleche {		/* Flèche pour retour à la page d'accueil */
+		margin : 15px  40px 15px 0;
+	}
+}
+
+.restau {			/* Haut de page pour les pages restaurants */
 	position: relative;
 	&__photo {
 		height: 300px;
@@ -343,13 +417,11 @@ ul {
 		& .coeur {
 			font-size: 1.5em;
 			margin-right: 5%;
-			
 		}
-		
 	}
 }
 
-.menu {
+.menu {			/* Section menu regroupant l'ensemble des blocs des différents plats */
 	background-color: $grey-light;
 	padding-top: 20px;
 	&__titre {
@@ -358,11 +430,11 @@ ul {
 		margin: 0;
 		padding: 20px 0 5px 0;
 	}
-	&__ligne {	/* demi-ligne sous PLATS, ENTREES, DESSERTS */
+	&__ligne {	/* demi-ligne déco sous PLATS, ENTREES, DESSERTS */
 		width: 40px;
    		border: 1px $color-ajouts solid;
 	}
-	&__repas {
+	&__repas {  		/* Blocs pour les différents plats */
 		background-color: white;
     	border-radius: 20px;
     	padding: 15px;
@@ -376,7 +448,6 @@ ul {
 		position: relative;
 		& .plat {
             width: 100%;
-            text-overflow: ellipsis;
             &__accompagnement {
                 display: flex;
                 justify-content: space-between;
@@ -423,14 +494,22 @@ ul {
 }
 
 .menu__repas:not(:hover) .checkbox {	/*transition : disparition checkbox quand on ne survole plus la boîte*/
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
     transform-origin: 100% 0;
+    -webkit-transform: scaleX(0);
+    -moz-transform: scaleX(0);
     transform: scaleX(0);
     -webkit-transition: transform 0.5s linear;
     -moz-transition: transform 0.5s linear;
     transition: transform 0.5s linear;
 }
 .menu__repas:hover .fa-check { /*transition : rotation de la coche */
+    -webkit-transition: transform 0.5s linear;
+    -moz-transition: transform 0.5s linear;
     transition: transform 0.5s linear;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
     transform: rotate(360deg);
     cursor: pointer;
 }
@@ -449,49 +528,20 @@ ul {
     transition: width 0.5s linear;
 }
 
-@keyframes apparition {
-	from {
-		opacity: 0;
-		transform: translateY(10%);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0%);
-	}
-}
-
 .plat1, .plat2, .plat3, .plat4, .plat5, .plat6, .plat7, .plat8, .plat9, .plat10 {
 	@include apparition-plats;
 }
-.plat2 {animation-delay: 0.2s;}
-.plat3 {animation-delay: 0.4s;}
-.plat4 {animation-delay: 0.6s;}
-.plat5 {animation-delay: 0.8s;}
-.plat6 {animation-delay: 1s;}
-.plat7 {animation-delay: 1.2s;}
-.plat8 {animation-delay: 1.4s;}
-.plat9 {animation-delay: 1.6s;}
-.plat10 {animation-delay: 1.8s;}
+.plat2 {-webkit-animation-delay: 0.2s; -moz-animation-delay: 0.2s; animation-delay: 0.2s;}
+.plat3 {-webkit-animation-delay: 0.4s; -moz-animation-delay: 0.4s; animation-delay: 0.4s;}
+.plat4 {-webkit-animation-delay: 0.6s; -moz-animation-delay: 0.6s; animation-delay: 0.6s;}
+.plat5 {-webkit-animation-delay: 0.8s; -moz-animation-delay: 0.8s; animation-delay: 0.8s;}
+.plat6 {-webkit-animation-delay: 1s; -moz-animation-delay: 1s; animation-delay: 1s;}
+.plat7 {-webkit-animation-delay: 1.2s; -moz-animation-delay: 1.2s; animation-delay: 1.2s;}
+.plat8 {-webkit-animation-delay: 1.4s; -moz-animation-delay: 1.4s; animation-delay: 1.4s;}
+.plat9 {-webkit-animation-delay: 1.6s; -moz-animation-delay: 1.6s; animation-delay: 1.6s;}
+.plat10 {-webkit-animation-delay: 1.8s; -moz-animation-delay: 1.8s; animation-delay: 1.8s;}
 
 
-.footer {
-	background-color: black;
-	padding: 2em;
-	& a {
-		color: white;
-	}
-	&__logo {
-	color: white;
-	margin: 0;
-	}
-	&__nav ul {
-		padding-left: 0;
-		line-height: 1.5;
-	}
-	.fa-utensils, .fa-hands-helping {
-    width: 30px;
-	}
-}
 
 /* MEDIA QUERIES */
 
@@ -531,7 +581,7 @@ ul {
 	}
 }
 
-@media screen and (min-width: 1400px) { /* Pour que le design reste propre */
+@media screen and (min-width: 1400px) { /* Desktop - breakpoint choisi pour conserver un design propre */
 
 	.section-fonctionnement {
 		display: flex;
