@@ -69,13 +69,9 @@ ul {
 @keyframes spinner {
   /* @keyframes pour rotation loading-spinner */
   from {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -93,14 +89,10 @@ ul {
 @keyframes apparition {
   from {
     opacity: 0;
-    -webkit-transform: translateY(10%);
-    -moz-transform: translateY(10%);
     transform: translateY(10%);
   }
   to {
     opacity: 1;
-    -webkit-transform: translateY(0%);
-    -moz-transform: translateY(0%);
     transform: translateY(0%);
   }
 }
@@ -141,6 +133,7 @@ ul {
   /* Superposition de 2 coeurs (1 vide et 1 plein) pour réaliser l'animation de remplissage du coeur au survol */
   position: relative;
   z-index: 1;
+  text-align: center;
   cursor: pointer;
 }
 .coeur .coeur1 {
@@ -148,8 +141,6 @@ ul {
   width: 35px;
   position: relative;
   bottom: 1px;
-  -webkit-transition: opacity 1500ms;
-  -moz-transition: opacity 1500ms;
   transition: opacity 1500ms;
 }
 .coeur .coeur2 {
@@ -158,15 +149,9 @@ ul {
   position: absolute;
   right: 0;
   opacity: 0;
-  background-image: white;
   -webkit-background-clip: text;
   -moz-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-  text-fill-color: transparent;
-  -webkit-transition: all 1500ms;
-  -moz-transition: all 1500ms;
+  color: transparent;
   transition: all 1500ms;
 }
 .coeur:hover > .coeur1 {
@@ -497,31 +482,19 @@ ul {
   /*transition : apparition checkbox au survol de la boîte*/
   transform-origin: 100% 0;
   transform: scaleX(1);
-  -webkit-transition: transform 0.5s linear;
-  -moz-transition: transform 0.5s linear;
   transition: transform 0.5s linear;
 }
 
 .menu__repas:not(:hover) .checkbox {
   /*transition : disparition checkbox quand on ne survole plus la boîte*/
-  -webkit-transform-origin: 100% 0;
-  -moz-transform-origin: 100% 0;
   transform-origin: 100% 0;
-  -webkit-transform: scaleX(0);
-  -moz-transform: scaleX(0);
   transform: scaleX(0);
-  -webkit-transition: transform 0.5s linear;
-  -moz-transition: transform 0.5s linear;
   transition: transform 0.5s linear;
 }
 
 .menu__repas:hover .fa-check {
   /*transition : rotation de la coche */
-  -webkit-transition: transform 0.5s linear;
-  -moz-transition: transform 0.5s linear;
   transition: transform 0.5s linear;
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
   transform: rotate(360deg);
   cursor: pointer;
 }
@@ -529,16 +502,12 @@ ul {
 .menu__repas:hover .plat {
   /*transition : décalage des plats au survol de la boîte*/
   width: 80%;
-  -webkit-transition: width 0.5s linear;
-  -moz-transition: width 0.5s linear;
   transition: width 0.5s linear;
 }
 
 .menu__repas:not(hover) .plat {
   /*transition : retour des plats à leur place initiale quand on ne survole plus la boîte*/
   width: 100%;
-  -webkit-transition: width 0.5s linear;
-  -moz-transition: width 0.5s linear;
   transition: width 0.5s linear;
 }
 
@@ -681,7 +650,7 @@ ul {
   }
   .restau__bloc-titre__titre {
     font-size: 2em;
-    padding-bottom: 30px;
+    padding: 15px 0;
     margin-top: 10px;
   }
   .restau__bloc-titre .coeur {
