@@ -11,7 +11,6 @@
 	L 508 --- MEDIA QUERIES (tablette ≥ 1024px - Desktop ≥ 1400px)
 */
 /* VARIABLES */
-/* Pour tous les éléments annexes (bloc nouveau, coche verte...)*/
 /* MIXINS */
 /* ELEMENTS GENERAUX */
 * {
@@ -342,8 +341,9 @@ ul {
   object-fit: cover;
 }
 .carte-restau__photo__nouveau {
-  background-color: #00E2D0;
-  color: #007c72;
+  background-color: #99E2D0;
+  color: #278870;
+  border-radius: 3px;
   padding: 0.5em 1em;
   display: inline-block;
   position: absolute;
@@ -418,7 +418,7 @@ ul {
 .menu__ligne {
   /* demi-ligne déco sous PLATS, ENTREES, DESSERTS */
   width: 40px;
-  border: 1px #00E2D0 solid;
+  border: 1px #99E2D0 solid;
 }
 .menu__repas {
   /* Blocs pour les différents plats */
@@ -453,14 +453,14 @@ ul {
   justify-content: center;
   align-items: center;
   border-radius: 0 20px 20px 0;
-  background-color: #00E2D0;
+  background-color: #99E2D0;
   position: absolute;
   right: 0;
   top: 0;
 }
 .menu__repas .checkbox .fa-check {
   /* coche dans la boite verte */
-  color: #00E2D0;
+  color: #99E2D0;
   background-color: white;
   border-radius: 50%;
   width: 15px;

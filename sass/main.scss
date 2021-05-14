@@ -19,7 +19,6 @@ $color3: #99E2D0;
 $grey-light: #F6F6F6;
 $grey-middle: #EAEAEA;
 $grey-dark: #D2D2D2;
-$color-ajouts: #00E2D0; /* Pour tous les éléments annexes (bloc nouveau, coche verte...)*/
 
 
 /* MIXINS */
@@ -333,8 +332,9 @@ ul {list-style-type: none;}
 			object-fit: cover;
 		}
 		&__nouveau {
-		background-color: $color-ajouts;
-		color: darken($color-ajouts, 20%);
+		background-color: $color3;
+		color: darken($color3, 40%);
+		border-radius: 3px;
    		padding: 0.5em 1em;
    		display: inline-block;
     	position: absolute;
@@ -408,7 +408,7 @@ ul {list-style-type: none;}
 	}
 	&__ligne {	/* demi-ligne déco sous PLATS, ENTREES, DESSERTS */
 		width: 40px;
-   		border: 1px $color-ajouts solid;
+   		border: 1px $color3 solid;
 	}
 	&__repas {  		/* Blocs pour les différents plats */
 		background-color: white;
@@ -439,12 +439,12 @@ ul {list-style-type: none;}
             justify-content: center;
             align-items: center;
             border-radius: 0 20px 20px 0;
-            background-color: $color-ajouts;
+            background-color: $color3;
             position: absolute;
             right: 0;
             top: 0;
             & .fa-check {	/* coche dans la boite verte */
-                color: $color-ajouts;
+                color: $color3;
                 background-color: white;
                 border-radius: 50%;
                 width: 15px;
