@@ -3,12 +3,12 @@
 /*
 	L 14 ---- VARIABLES
 	L 25 ---- MIXINS
-	L 38 ---- ELEMENTS GENERAUX (polices, marges des pages, taille des fonts...)
-	L 78 ---- KEYFRAMES
-	L 120 --- POUR TOUTES LES PAGES (dont header, footer et coeur)
-	L 211 --- POUR LA PAGE D'ACCUEIL (dont loading spinner)
-	L 382 --- POUR LES PAGES DES RESTAURANTS (dont coche verte)
-	L 546 --- MEDIA QUERIES (tablette > 1024px - Desktop > 1400px)
+	L 32 ---- ELEMENTS GENERAUX (polices, marges des pages, taille des fonts...)
+	L 72 ---- KEYFRAMES
+	L 106 --- POUR TOUTES LES PAGES (dont header, footer et coeur)
+	L 187 --- POUR LA PAGE D'ACCUEIL (dont loading spinner)
+	L 358 --- POUR LES PAGES DES RESTAURANTS (dont coche verte)
+	L 508 --- MEDIA QUERIES (tablette ≥ 1024px - Desktop ≥ 1400px)
 */
 /* VARIABLES */
 /* Pour tous les éléments annexes (bloc nouveau, coche verte...)*/
@@ -87,6 +87,7 @@ ul {
   }
 }
 @keyframes apparition {
+  /* @keyframes pour apparition des plats */
   from {
     opacity: 0;
     transform: translateY(10%);
@@ -99,9 +100,8 @@ ul {
 /* POUR TOUTES LES PAGES */
 .header__logo {
   /* Mise en place du logo  */
-  display: flex;
-  justify-content: center;
   margin: 1em;
+  text-align: center;
 }
 .header__logo img {
   width: 200px;
@@ -132,19 +132,16 @@ ul {
 .coeur {
   /* Superposition de 2 coeurs (1 vide et 1 plein) pour réaliser l'animation de remplissage du coeur au survol */
   position: relative;
-  z-index: 1;
   text-align: center;
   cursor: pointer;
 }
 .coeur .coeur1 {
-  z-index: 3;
   width: 35px;
   position: relative;
   bottom: 1px;
   transition: opacity 1500ms;
 }
 .coeur .coeur2 {
-  z-index: 2;
   width: 35px;
   position: absolute;
   right: 0;
@@ -496,7 +493,6 @@ ul {
   /*transition : rotation de la coche */
   transition: transform 0.5s linear;
   transform: rotate(360deg);
-  cursor: pointer;
 }
 
 .menu__repas:hover .plat {
@@ -512,7 +508,6 @@ ul {
 }
 
 .plat1, .plat2, .plat3, .plat4, .plat5, .plat6, .plat7, .plat8, .plat9, .plat10 {
-  /* Animation pour apparition progressive des différents plats */
   animation: apparition 1s linear backwards;
   -webkit-animation: apparition 1s linear backwards;
   -moz-animation: apparition 1s linear backwards;
@@ -616,6 +611,15 @@ ul {
 }
 @media screen and (min-width: 1400px) {
   /* Desktop - breakpoint choisi pour conserver un design propre */
+  .header-pages, main, .footer__contenu {
+    max-width: 2000px;
+    margin: auto;
+  }
+
+  .header-pages {
+    padding: 0;
+  }
+
   .section-fonctionnement {
     display: flex;
     align-items: baseline;
@@ -655,6 +659,10 @@ ul {
   }
   .restau__bloc-titre .coeur {
     font-size: 2em;
+  }
+
+  .footer__contenu {
+    padding-left: 5%;
   }
 }
 
